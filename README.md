@@ -58,3 +58,30 @@ print("Adjusted R-squared:", adjusted_r2)
 # Calculate standard deviation of residuals
 std_dev = np.sqrt(np.mean((y_pred - y_test) ** 2))
 print("Standard Deviation of Residuals:", std_dev)
+
+import matplotlib.pyplot as plt
+
+# Plotting actual vs predicted volume
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, y_pred, color='blue', label='Actual vs. Predicted')
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--', lw=2, label='Perfect Prediction')
+plt.title('Actual vs. Predicted Volume (Test Set)')
+plt.xlabel('Actual Volume')
+plt.ylabel('Predicted Volume')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Plotting the relationship between each independent variable and the target variable (Volume)
+fig, axs = plt.subplots(1, 3, figsize=(18, 6))
+
+for i, column in enumerate(X.columns):
+    axs[i].scatter(X_test[column], y_test, color='blue', label='Actual')
+    axs[i].scatter(X_test[column], y_pred, color='red', label='Predicted')
+    axs[i].set_title(f'{column} vs. Volume')
+    axs[i].set_xlabel(column)
+    axs[i].set_ylabel('Volume')
+    axs[i].legend()
+
+plt.tight_layout()
+plt.show()
