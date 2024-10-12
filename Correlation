@@ -33,3 +33,13 @@ for column in correlations.columns:
                 print(f"- {index}: Weak negative correlation ({value:.2f})")
             else:
                 print(f"- {index}: No correlation")
+
+# Plot correlation matrix as a heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlations, annot=True, cmap='YlGnBu', fmt=".2f", annot_kws={"size": 8})
+plt.title('Correlation Matrix')
+plt.xlabel('Parameters')
+plt.ylabel('Parameters')
+plt.xticks(rotation=45)
+plt.yticks(rotation=0)
+plt.show()
